@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <title>FC Barcelona Femeni Quiz</title>
+        <link rel="stylesheet" href="SiteStyle.css">
+        <style> 
+    /* Unique styling for this page only */
+    #quiz, #quiz * {
+        text-align: left;
+    }   
+
+    #quiz {
+        width: 80%;
+        margin: auto;
+    }
+
+    #quiz h2 {
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+    #quiz button {
+        margin-top: 25px;
+        margin-right: 12px;
+        font-size: 16px;
+        padding: 12px 24px;           
+        border-radius: 6px;
+        background-color: #A50044; 
+        color: white;
+    }
+
+    #quiz button:hover {
+        background-color: black;
+        color: #A50044;
+    }
+</style>
+    </head>
+    <body>
+        <!--Topbar Navigation Menu-->
+        <nav> 
+            <img src="FCBcrest.png" alt="FC Barcelona Crest Logo" class="crest">
+            <a href="index.html">HOME</a>
+            <a href="Roster.html">TEAM ROSTER</a>
+            <a href="Innovation.html">INNOVATION</a>
+            <a href="KeyConcepts.html">KEY CONCEPTS</a>
+            <a href="References.html">REFERENCES</a>
+            <a href="About.html">ABOUT</a>
+            <a href="Quiz.html">QUIZ</a>
+        </nav>
+<!--Quiz Page Content-->
+<main>
+<h1>FC Barcelona Femeni Quiz</h1>
+<h3>Let's test your knowledge!</h3>
+
+<!--Quiz Questions/Form-->
+<form id="quiz">
+
+<!--Fill in the Blank Question-->
+    <h2>1] Fill in the blank:</h2>
+    This is the FC Barcelona Femeni squad for the <strong>20__/__</strong> season.<br/> 
+    <input type="text" name="season"/>
+
+<!--Multiple Choice 1-->
+
+    <h2><strong>2] This site is about which FC Barcelona Team?</strong></h2><br>
+
+    <input type="radio" id="women" name="team" value="Women">
+    <label for="women">Women</label><br>
+
+    <label><input type="radio" id="men" name="team" value="Men"></label>
+    <label for="men">Men</label><br>
+
+    <label><input type="radio" id="youth" name="team" value="Youth"></label>
+    <label for="youth">Youth</label><br>
+
+<!--Multiple Choice 2-->
+
+    <h2><strong>3] Which league does FC Barcelona play in?</strong></h2><br>
+
+    <label><input type="radio" id="mls" name="league" value="MLS"></label>
+    <label for="mls">MLS</label><br>
+    
+    <input type="radio" id="laliga" name="league" value="LaLiga">
+    <label for="laliga">LaLiga</label><br>
+
+    <label><input type="radio" id="primer" name="league" value="Primer League"></label>
+    <label for="primer">Primer League</label><br>
+
+<!--Multiple Choice 3-->
+
+    <h2>4] What is the most <strong>recent</strong> year FC Barcelona Femeni won the Copa De La Reina?</h2><br>
+
+    <input type="radio" id="2024" name="copa" value="2024">
+    <label for="2024">2024</label><br>
+
+    <label><input type="radio" id="2020" name="copa" value="2020"></label>
+    <label for="2020">2020</label><br>
+
+    <label><input type="radio" id="2025" name="copa" value="2025"></label>
+    <label for="2025">2025</label><br>
+
+
+<!--Multi-Selection Question-->
+    <h2>5] Which topics were discussed on the <strong>Innovation</strong> page?</h2><br>
+
+    <input type="checkbox" id="topicACL" name="topic1" value="acl">
+    <label for="topicACL">Recovery of ACL Injuries in Women's Soccer</label><br>
+
+    <input type="checkbox" id="topicEat" name="topic2" value="eat">
+    <label for="topicEat">Nutrition Plans for Female Athletes</label><br>
+
+    <input type="checkbox" id="topicSleep" name="topic3" value="sleep">
+    <label for="topicSleep">The Healthiest Sleeping Habits of Female Footballers</label><br>
+
+    <input type="checkbox" id="topicMenst" name="topic3" value="menstruation">
+    <label for="topicMenst">Menstruation and Injury Correlation in Female Footballers</label><br>
+     
+<!--End of Quiz + Submission Button-->
+    <button type="button" onclick="gradingQuiz()">Submit</button>
+    <button type="button" id="resetbutton" onclick="resetQuiz()">Reset Quiz</button>
+        </form>
+
+
+<!-- Results Section -->
+<div id="results" style="margin-top:  30px;"></div>
+</main>
+
+<script>
+function gradingQuiz() {
+    let Score = 0;   // score before converting to %
+    let maxscore = 4 + 2;  
+    // 4 questions each with one correct answer  + 2 correct checkboxes in Question 5
+
+    let output = "";
+
+    // Correct Answers:
+    const correctSeason = "25/26";
+    const correctTeam = "Women";
+    const correctLeague = "LaLiga";
+    const correctCopa = "2025";
+    const correctTopics = ["acl", "menstruation"];
+
+    //Grading for Question 1
+    let season = document.querySelector("input[name='season']").value;
+
+    let message1 = "";
+    if (season === correctSeason) {
+        Score++
+    message1 = "<span style='color:green;'>Correct!</span>";
+    } else {
+    message1 = "<span style='color:red;'>Incorrect!</span>";
+    }
+    output += "<p><strong>1] Season:</strong> " 
+        + message1 
+        + " (Correct Answer: 25/26)<br></p>";
+
+     //Grading for Question 2
+    let team = document.querySelector("input[name='team']:checked");
+    team = team ? team.value : "";
+
+    let message2 = "";
+    if (team === correctTeam) {
+        Score++;
+    message2 = "<span style='color:green;'>Correct!</span>";
+    } else {
+    message2 = "<span style='color:red;'>Incorrect!</span>";
+    }
+    output += "<p><strong>2] Team:</strong> " 
+        + message2 
+        + " (Correct Answer: Women)<br></p>";
+
+    //Grading for Question 3
+    let league = document.querySelector("input[name='league']:checked");
+    league = league ? league.value : "";
+
+    let message3 = "";
+    if (league === correctLeague) {
+    Score++;
+    message3 = "<span style='color:green;'>Correct!</span>";
+    } else {
+    message3 = "<span style='color:red;'>Incorrect!</span>";
+    }
+    output += "<p><strong>3] League:</strong> " 
+        + message3 
+        + " (Correct Answer: LaLiga)<br></p>";
+
+     //Grading for Question 4
+    let copa = document.querySelector("input[name='copa']:checked");
+    copa = copa ? copa.value : "";
+
+    let message4 = "";
+    if (copa === correctCopa) {
+    Score++;
+    message4 = "<span style='color:green;'>Correct!</span>";
+    } else {
+    message4 = "<span style='color:red;'>Incorrect!</span>";
+    }
+    output += "<p><strong>4] Copa de la Reina:</strong> " 
+        + message4 
+        + " (Correct Answer: 2025)<br></p>";
+    
+
+    //Grading for Question 5
+    let Question5Score = 0;
+
+    if (document.getElementById("topicACL").checked) Question5Score++;
+    if (document.getElementById("topicMenst").checked) Question5Score++;
+
+    // Counting how many boxes were selected
+    let selectedBox = 0;
+    if (document.getElementById("topicACL").checked) selectedBox++;
+    if (document.getElementById("topicMenst").checked) selectedBox++;
+    if (document.getElementById("topicEat").checked) selectedBox++;
+    if (document.getElementById("topicSleep").checked) selectedBox++;
+
+    if (Question5Score === 2 && selectedBox === 2) {
+        Score += 2;
+        message5 = "<span style='color:green;'>Correct!</span>";
+    }   
+        else {
+            message5 = "<span style='color:red;'>Incorrect!</span>";
+    }
+
+    output += "<p><strong>5] Innovation Topics:</strong> " 
+        + message5
+        + " (Correct Answers: Recovery of ACL Injuries in Women's Soccer, Menstruation and Injury Correlation in Female Footballers )</p>";
+
+    //Convert Score to Percentage
+    let percent = Math.round((Score / maxscore) * 100);
+    let pass;
+    let color;
+        if (percent >= 70) {
+            pass = "PASS!";
+            color = "green";
+        } else {
+            pass = "FAIL!";
+            color = "red";
+        } 
+
+    output += `<h2 style="color:${color};">Result: ${pass}</h2>`;
+    output += `<h3>Score: ${percent}%</h3>`;
+    output += "</div>";
+
+    document.getElementById("results").innerHTML = output;
+
+    // Display reset button after results
+    document.getElementById("resetbutton").style.display = "inline-block";
+    
+}
+
+function resetQuiz() {
+    document.getElementById("quiz").reset();
+    document.getElementById("results").innerHTML = "";
+    document.getElementById("resetbutton").style.display = "none";
+}
+</script>
+
+<footer>
+            <p>Lorena Ruiz | Kennesaw State University<br>IT 3203 Class Project<br>Spring 2026</p>
+            <address> Class Website: <a href="https://ksuweb.github.io/IT3203/">Intro to Web Development</a></address>
+        </footer>
+
+</body>
+</html>
