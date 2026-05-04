@@ -99,16 +99,9 @@ figcaption {
 #rightbannerImage {
     transition: opacity 0.2s ease-in-out;
 }
-/* Tablet Responsive Layout */
-@media (max-width: 1199px) {
-    .homepage {
-        padding-left: 160px;
-        padding-right: 160px;
-    }
-}
 
-/* Hiding banner on phones-sized screens */
-@media (max-width: 767px) {
+/* Hiding banner on tablet and phone-sized screens */
+@media (max-width: 1199px) {
     .homepage {
         padding-left: 0;
         padding-right: 0;
